@@ -7,6 +7,8 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+
+	"github.com/rs/zerolog/log"
 )
 
 const unknownErr = "unknown error"
@@ -52,6 +54,7 @@ func ConstructErrResponse(r *http.Response, bucketName, objectName string) error
 	body, err := io.ReadAll(io.LimitReader(r.Body, maxBodySize))
 	if err != nil {
 		fmt.Println("read body err:", err.Error())
+		log.Error().Msg(fmt.Sprintf("read body err %s", err.Error()))
 		return ErrResponse{
 			StatusCode: r.StatusCode,
 			Code:       "InternalError",

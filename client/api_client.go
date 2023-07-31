@@ -466,6 +466,7 @@ func (c *client) doAPI(ctx context.Context, req *http.Request, meta requestMeta,
 
 	// dump error msg
 	if c.isTraceEnabled {
+		log.Error().Msg(fmt.Sprintf("getting response"))
 		c.dumpSPMsg(req, resp)
 	}
 
