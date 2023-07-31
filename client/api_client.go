@@ -464,13 +464,14 @@ func (c *client) doAPI(ctx context.Context, req *http.Request, meta requestMeta,
 		}
 	}()
 
+	// dump error msg
+	if c.isTraceEnabled {
+		c.dumpSPMsg(req, resp)
+	}
+
 	// construct err responses and messages
 	err = types.ConstructErrResponse(resp, meta.bucketName, meta.objectName)
 	if err != nil {
-		// dump error msg
-		if c.isTraceEnabled {
-			c.dumpSPMsg(req, resp)
-		}
 		return resp, err
 	}
 

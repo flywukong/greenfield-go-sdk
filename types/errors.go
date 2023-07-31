@@ -51,6 +51,7 @@ func ConstructErrResponse(r *http.Response, bucketName, objectName string) error
 	const maxBodySize = 10 * 1024 * 1024
 	body, err := io.ReadAll(io.LimitReader(r.Body, maxBodySize))
 	if err != nil {
+		fmt.Println("read body err:", err.Error())
 		return ErrResponse{
 			StatusCode: r.StatusCode,
 			Code:       "InternalError",
