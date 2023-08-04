@@ -71,9 +71,9 @@ func ConstructErrResponse(r *http.Response, bucketName, objectName string) error
 
 // ToInvalidArgumentResp returns invalid argument response.
 func ToInvalidArgumentResp(message string) error {
+	json := ErrResponseJson{Code: 404, Message: message}
 	return ErrResponse{
-		StatusCode: http.StatusBadRequest,
-		Code:       "InvalidArgument",
-		Message:    message,
+		StatusCode:  http.StatusBadRequest,
+		ErrResponse: json,
 	}
 }
