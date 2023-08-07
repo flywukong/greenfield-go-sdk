@@ -741,10 +741,7 @@ func getObjInfo(objectName string, h http.Header) (types.ObjectStat, error) {
 	if contentLength != "" {
 		size, err = strconv.ParseInt(contentLength, 10, 64)
 		if err != nil {
-			return types.ObjectStat{}, types.ErrResponse{
-				Code:    "InternalError",
-				Message: fmt.Sprintf("Content-Length parse error %v", err),
-			}
+			return types.ObjectStat{}, errors.New("xx")
 		}
 	}
 
